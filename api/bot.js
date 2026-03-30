@@ -5,7 +5,17 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 if (!TELEGRAM_BOT_TOKEN) {
   throw new Error('TELEGRAM_BOT_TOKEN topilmadi');
 }
-
+export default async function handler(req, res) {
+  return res.status(200).json({
+    ok: true,
+    message: "Bot route ishlayapti"
+  });
+}export default async function handler(req, res) {
+  return res.status(200).json({
+    ok: true,
+    message: "Bot route ishlayapti"
+  });
+}
 const providers = [
   {
     name: 'groq',

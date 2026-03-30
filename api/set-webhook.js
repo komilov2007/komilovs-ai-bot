@@ -1,5 +1,10 @@
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-
+export default async function handler(req, res) {
+  return res.status(200).json({
+    ok: true,
+    message: "Set webhook route ishlayapti"
+  });
+}
 export default async function handler(req, res) {
   try {
     if (!TELEGRAM_BOT_TOKEN) {
