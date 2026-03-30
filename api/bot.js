@@ -80,7 +80,7 @@ async function askAI(userText) {
   if (!providers.length) {
     return {
       reply:
-        'API key topilmadi. Vercel environment variables ga kamida bitta AI key qo‘ying.',
+        'AI API key topilmadi. Vercel ichida TELEGRAM_BOT_TOKEN va kamida bitta AI key qo‘ying.',
       provider: 'none',
     };
   }
@@ -95,7 +95,7 @@ async function askAI(userText) {
           {
             role: 'system',
             content:
-              'Siz Komilovs AI botsiz. Foydalanuvchiga asosan o‘zbek tilida aniq, foydali va qisqa javob bering. Kod so‘ralsa toza va ishlaydigan kod yozing.',
+              'Siz Komilovs AI botsiz. Foydalanuvchiga asosan o‘zbek tilida aniq, foydali, sodda va qisqa javob bering. Kod so‘ralsa ishlaydigan toza kod yozing.',
           },
           {
             role: 'user',
@@ -140,7 +140,7 @@ Buyruqlar:
 /help - yordam
 /about - bot haqida
 
-Menga savol, kod, tarjima yoki idea yozing.`
+Savol, kod, tarjima yoki idea yozing.`
     );
     return true;
   }
@@ -155,9 +155,9 @@ Menga savol, kod, tarjima yoki idea yozing.`
 
 Misollar:
 - React hook yozib ber
-- Inglizchaga tarjima qil
 - Telegram bot qanday qilinadi
-- Tailwind card design yozib ber`
+- Inglizchaga tarjima qil
+- Tailwind card yozib ber`
     );
     return true;
   }
@@ -171,8 +171,7 @@ Imkoniyatlari:
 - savol-javob
 - kod yozish
 - tarjima
-- tushuntirish
-- dasturlash bo‘yicha yordam`
+- tushuntirish`
     );
     return true;
   }
@@ -184,7 +183,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(200).json({
       ok: true,
-      message: 'Telegram webhook endpoint ishlayapti',
+      message: 'Bot route ishlayapti',
     });
   }
 
@@ -198,8 +197,9 @@ export default async function handler(req, res) {
     const chatId = update.message.chat.id;
     const text = update.message.text.trim();
 
-    const isCommandHandled = await handleCommand(chatId, text);
-    if (isCommandHandled) {
+    const isCommand = await handleCommand(chatId, text);
+
+    if (isCommand) {
       return res.status(200).json({ ok: true });
     }
 
@@ -212,6 +212,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true });
   } catch (error) {
     console.error('Webhook error:', error?.message || error);
+
     return res.status(200).json({
       ok: true,
       handled: false,

@@ -8,5 +8,8 @@
   },
   "dependencies": {
     "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "vercel": "^41.7.3"
   }
 }
