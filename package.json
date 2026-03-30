@@ -1,0 +1,16 @@
+{
+  "name": "komilovs-ai-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "node-telegram-bot-api": "^0.67.0",
+    "openai": "^6.33.0"
+  }
+}
